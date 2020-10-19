@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import Aux from  '../../hoc/auxiliary';
 import Burger from '../../components/Layout/Burger/Burger';
-
+import axios from '../../axios-orders';
 // import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import OrderSummary from '../../components/Layout/Burger/OrderSummary/OrderSummary';
 import BuildControls from  '../../components/Layout/Burger/BuildControls/BuildControls'
 import Modal from '../../components/UI/Modal/Modal';
+import { maxSatisfying } from 'semver';
 
 const INGREDIENT_PRICES = {
     salad: 0.5,
@@ -86,7 +87,24 @@ purchaseCancelHandler=()=>
 
 purchaseContinueHandler=()=>
 {
-    alert('You Continue');
+    // alert('You Continue');
+    const order={
+        ingredients: this.state.ingredients,
+        price: this.state.totalPrice,
+        customer: {
+            name:'Akshay',
+            address:{
+                street: '11',
+                zip: '248001'
+                    },
+                    email : 'ak@gmail'
+        },
+        deliverMethods: 'fastest'
+    }
+    axios.post('/orders.json',order)
+    .then(response=>console.log(response))
+    .catch(error=> console.log(error));
+
 }
 
     render () {
