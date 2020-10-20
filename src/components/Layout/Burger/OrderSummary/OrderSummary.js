@@ -1,6 +1,5 @@
 import React from 'react';
 
-// import Aux from './hoc/auxiliary';
 import Button from '../../../UI/Button/Button';
 import Aux from  '../../../../hoc/auxiliary';
 
